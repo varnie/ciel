@@ -55,6 +55,14 @@ function renderThemes() {
   $('#journey-progress').textContent = t('lights',{n:progress.completed.length});
   $('#journey-meter').value = progress.completed.length;
   $('#journey-title').textContent = t(progress.completed.length === 50 ? 'journeyEnd' : progress.completed.length ? 'journeyNear' : 'journeyStart');
+  $('#route-lights').replaceChildren();
+  $('#route-lights').setAttribute('aria-label',t('lights',{n:progress.completed.length}));
+  for (const stop of themeCatalog) {
+    const light = document.createElement('span'); light.className = 'route-light';
+    light.classList.toggle('lit',progress.completed.includes(stop.id));
+    light.title = themeName(stop); light.setAttribute('aria-hidden','true');
+    $('#route-lights').append(light);
+  }
 }
 function updateStreak() {
   $('#streak').textContent = streak > 1 ? t('streak',{n:streak}) : t('rhythm');
@@ -141,7 +149,9 @@ function linkPair(a,b) {
   const first=a.getBoundingClientRect(),second=b.getBoundingClientRect();
   const x=first.x+first.width/2,y=first.y+first.height/2,dx=second.x+second.width/2-x,dy=second.y+second.height/2-y;
   const line=document.createElement('span');line.className='match-link';
-  Object.assign(line.style,{left:`${x}px`,top:`${y}px`,width:`${Math.hypot(dx,dy)}px`,rotate:`${Math.atan2(dy,dx)}rad`});
+  const thickness = (mobile.matches ? 3 : 4) + Math.random() * (mobile.matches ? 3 : 5);
+  const glow = ['#ffe6aa','#eed5ff','#b7fff0'][Math.floor(Math.random()*3)];
+  Object.assign(line.style,{left:`${x}px`,top:`${y-thickness/2}px`,width:`${Math.hypot(dx,dy)}px`,height:`${thickness.toFixed(1)}px`,rotate:`${Math.atan2(dy,dx)}rad`,boxShadow:`0 0 ${(thickness*2).toFixed(1)}px ${glow}`});
   document.body.append(line);setTimeout(()=>line.remove(),900);
 }
 let frenchVoice = null;
@@ -181,7 +191,28 @@ function settings() {
 }
 $('#sound').onclick = () => {sound = !sound; speechRequest++; recordedAudio.pause(); synth?.cancel(); if (!sound) audioContext?.suspend(); settings(); save(); if (sound) speak('le soleil');};
 $('#motion').onclick = () => {motion = !motion; settings(); save();};
-function updateProgress() { $('#progress-label').textContent = `${found} / 10 ${t('pairs')}`; $('#progress-bar').style.width = `${found * 10}%`; }
+function updateProgress() {
+  $('#progress-label').textContent = `${found} / 10 ${t('pairs')}`; $('#progress-bar').style.width = `${found * 10}%`;
+  const caption = locale === 'ru' ? `Каждая пара зажигает путь · ${found}/10` : `Every match lights the way · ${found}/10`;
+  $('#trail-caption').textContent = caption; $('#round-lights').setAttribute('aria-label',caption);
+  if (!$('#round-lights').children.length) for (let i=0;i<10;i++) {
+    const light = document.createElement('span'); light.className = 'trail-lantern'; light.setAttribute('aria-hidden','true'); $('#round-lights').append(light);
+  }
+  [...$('#round-lights').children].forEach((light,index)=>light.classList.toggle('lit',index<found));
+  $('.round-trail').classList.toggle('arrived',found===10);
+}
+function lightTheWay(source) {
+  const lantern = $('#round-lights').children[found-1];
+  if (!lantern || !motion || reduced.matches) return;
+  const from = source.getBoundingClientRect(), to = lantern.getBoundingClientRect();
+  const spark = document.createElement('span'); spark.className = 'travelling-light'; spark.setAttribute('aria-hidden','true');
+  Object.assign(spark.style,{left:`${from.x+from.width/2}px`,top:`${from.y+from.height/2}px`});
+  document.body.append(spark);
+  const dx=to.x+to.width/2-from.x-from.width/2, dy=to.y+to.height/2-from.y-from.height/2;
+  const flight=spark.animate([{transform:'translate(-50%,-50%) scale(1.2)',opacity:1},{transform:`translate(calc(-50% + ${dx*.5}px),calc(-50% + ${dy*.5-25}px)) scale(1)`,opacity:1},{transform:`translate(calc(-50% + ${dx}px),calc(-50% + ${dy}px)) scale(.4)`,opacity:0}],{duration:750,easing:'ease-in-out'});
+  flight.onfinish=()=>spark.remove(); setTimeout(()=>spark.remove(),900);
+  lantern.animate([{scale:1},{scale:1.65},{scale:1}],{duration:550,delay:500,easing:'ease-out'});
+}
 function fill(excludeId) {
   while(active.length < 2 && found < 10) {
     if (queue.length) active.push(queue.shift());
@@ -254,7 +285,7 @@ function select(card,button) {
     found++; progress.total++;
     if (!errors.has(card.id)) progress.mistakes[card.id] = Math.max(0,(Number(progress.mistakes[card.id]) || 0)-1);
     $('#feedback').textContent = `${['Très bien ! ✨','Bravo ! 🌟','Magnifique ! 💜','Super ! 🎈'][Math.floor(Math.random()*4)]} ${card.fr} — ${card.en}`;
-    updateProgress(); save();
+    updateProgress(); lightTheWay(button); save();
   } else {
     effect('wrong');
     streak = 0; updateStreak();

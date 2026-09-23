@@ -1,0 +1,47 @@
+/* Quiet ambient life. Every decorative layer is noninteractive and bounded. */
+.tiny-firework{position:absolute;width:1px;height:1px;pointer-events:none}
+.tiny-firework b{position:absolute;width:4px;height:4px;border-radius:50%;box-shadow:0 0 6px currentColor;animation:tiny-bloom 1.3s ease-out both}
+@keyframes tiny-bloom{0%{translate:0 0;scale:.3;opacity:0}12%{opacity:.7;scale:1}80%{opacity:.3}100%{translate:var(--spark-x) var(--spark-y);scale:.3;opacity:0}}
+.sky-details{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.air-mote{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff1c4;box-shadow:0 0 9px #ffe5a466;opacity:0;animation:air-drift var(--drift) ease-in-out infinite}
+.air-mote:nth-child(3n){width:6px;height:6px;background:#efdbff}
+@keyframes air-drift{0%,100%{translate:0 18px;opacity:0}25%{opacity:.32}65%{translate:18px -25px;opacity:.55}85%{opacity:.15}}
+.sky-bird{position:absolute;left:-50px;width:28px;height:14px;opacity:0;animation:bird-cross var(--crossing) linear infinite;filter:drop-shadow(0 1px 1px #ffffff20)}
+.sky-bird b{position:absolute;top:5px;width:15px;height:7px;border-top:2px solid #23355c;border-radius:50%;transform-origin:right center;animation:wing-beat 1.1s ease-in-out infinite alternate}
+.sky-bird b+ b{left:14px;transform-origin:left center;animation-direction:alternate-reverse}
+@keyframes bird-cross{0%{translate:0 0;opacity:0}4%{opacity:.36}28%{opacity:.36}34%,100%{translate:calc(100vw + 100px) -30px;opacity:0}}
+@keyframes wing-beat{from{rotate:-16deg;scale:1 .7}to{rotate:14deg;scale:1 1.1}}
+.shooting-star{position:absolute;height:2px;width:95px;border-radius:100%;background:linear-gradient(90deg,transparent,#fff2c7);rotate:140deg;opacity:0;animation:star-flight 43s linear infinite;display:none;box-shadow:0 0 8px #ffedc633}
+.shooting-star:after{content:'';position:absolute;right:0;top:-2px;width:5px;height:5px;border-radius:50%;background:#fff8e0;box-shadow:0 0 10px #fff1c1}
+@keyframes star-flight{0%,1%{translate:0 0;opacity:0}2%{opacity:.85}5%{translate:-250px 200px;opacity:0}6%,100%{translate:-250px 200px;opacity:0}}
+body[data-sky=night] .sky-bird{display:none}body[data-sky=night] .shooting-star{display:block}body[data-sky=night] .air-mote{background:#ddccff;box-shadow:0 0 12px #cbaeff}
+.celestial:before{content:'';position:absolute;inset:-15px;border:2px dashed #ffe9ae55;border-radius:50%;animation:sun-turn 75s linear infinite}
+.celestial:after{content:'';position:absolute;inset:-8px;border:1px solid #fff0b938;border-radius:50%;animation:sun-breathe 9s ease-in-out infinite}
+@keyframes sun-turn{to{rotate:360deg}}@keyframes sun-breathe{0%,100%{scale:1;opacity:.35}50%{scale:1.13;opacity:.75}}
+body[data-sky=night] .celestial:before{display:none}body[data-sky=night] .celestial:after{border-color:#e0d6ff55}
+.theme-card .theme-art{position:relative;overflow:hidden}
+.theme-card .theme-art:after{content:'';position:absolute;inset:-30%;background:linear-gradient(110deg,transparent 42%,#ffffff80 50%,transparent 58%);translate:-120% 0;pointer-events:none}
+@media(hover:hover){.theme-card:hover .theme-art:after{animation:illustration-shine .8s ease-out}.icon-button:hover{translate:0 -2px}.theme-pagination button:not(:disabled):hover{translate:0 -2px;box-shadow:0 7px 18px #1b184733}}
+.theme-card:focus-visible .theme-art:after{animation:illustration-shine .8s ease-out}
+@keyframes illustration-shine{to{translate:120% 0}}
+.theme-art svg{animation:illustration-hover 7s ease-in-out infinite}.theme-card:nth-child(2n) svg{animation-delay:-2s}.theme-card:nth-child(3n) svg{animation-delay:-4s}
+@keyframes illustration-hover{0%,100%{translate:0 0}50%{translate:0 -3px}}
+.brand span{display:inline-block;animation:logo-twinkle 13s ease-in-out infinite;transform-origin:center}
+@keyframes logo-twinkle{0%,85%,100%{rotate:0deg;scale:1}92%{rotate:25deg;scale:1.13}}
+.lighthouse span{animation:beacon-glow 5s ease-in-out infinite}.lighthouse{position:relative}
+@keyframes beacon-glow{0%,100%{filter:drop-shadow(0 0 1px #ffe19a)}50%{filter:drop-shadow(0 0 9px #ffe19a)}}
+#progress-bar{position:relative;overflow:hidden}#progress-bar:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,#ffffffa0,transparent);animation:progress-glint 5s ease-in-out infinite}
+@keyframes progress-glint{0%,55%{translate:-110% 0}85%,100%{translate:110% 0}}
+.ui-ripple{position:fixed;width:24px;height:24px;border:2px solid #fff2cb;border-radius:50%;translate:-50% -50%;z-index:60;pointer-events:none;animation:tap-ring .6s ease-out forwards}
+@keyframes tap-ring{from{scale:.4;opacity:.8}to{scale:2.7;opacity:0}}
+.icon-button,.theme-pagination button{transition:translate .2s,background .2s,box-shadow .2s}.icon-button:active,.theme-pagination button:not(:disabled):active{scale:.94}
+/* Respect both the in-game switch and the operating system's preference. */
+.bubble{translate:0 0;transition:translate 3.2s cubic-bezier(.45,0,.25,1),opacity .4s,scale .4s,box-shadow .2s}
+body.breeze .bubble:not(:hover):not(:focus):not(.selected):not(.matched):not(.wrong){translate:var(--wind-offset,12px) 0}
+body.still .bubble{translate:0 0!important;transition:none}
+@media(prefers-reduced-motion:reduce){.bubble{translate:0 0!important;transition:none!important}}
+.still .sky-details,.still .ui-ripple{display:none}.still .celestial:before,.still .celestial:after,.still .theme-art svg,.still .theme-art:after,.still .brand span,.still .lighthouse span,.still #progress-bar:after{animation:none!important}
+.still .icon-button,.still .theme-pagination button{transition:none}.still .icon-button:hover,.still .theme-pagination button:hover{translate:none}.still .icon-button:active,.still .theme-pagination button:active{scale:1}
+.scene-paused .celestial:before,.scene-paused .celestial:after,.scene-paused .sky *,.scene-paused .theme-art svg,.scene-paused .brand span,.scene-paused .lighthouse span,.scene-paused #progress-bar:after{animation-play-state:paused!important}
+@media(max-width:760px){.air-mote:nth-child(n+7){display:none}.sky-bird:nth-last-of-type(3){display:none}.theme-art svg{animation-duration:9s}}
+@media(prefers-reduced-motion:reduce){.sky-details,.ui-ripple{display:none}.celestial:before,.celestial:after,.theme-art svg,.theme-art:after,.brand span,.lighthouse span,#progress-bar:after{animation:none!important}.icon-button:hover,.theme-pagination button:hover{translate:none}.icon-button:active,.theme-pagination button:active{scale:1}}

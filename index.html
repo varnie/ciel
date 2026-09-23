@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="delights.css">
   <link rel="stylesheet" href="journey.css">
   <link rel="stylesheet" href="visual.css">
+  <link rel="stylesheet" href="ambient.css">
+  <link rel="stylesheet" href="lanterns.css">
   <script type="module" src="app.js"></script>
 </head>
 <body>
@@ -29,6 +31,7 @@
       <h1>Поймай слово.<br><em>Найди его пару.</em></h1>
       <p>Помоги опоссуму BOZUU донести звёздочку до маяка.<br>50 остановок. Новые слова зажигают путь.</p>
       <div class="journey"><img src="bozuu.svg" alt="Опоссум BOZUU со звёздочкой"><div><strong id="journey-title">Путешествие начинается</strong><p id="journey-progress">0 из 50 огоньков зажжено</p><progress id="journey-meter" value="0" max="50" aria-label="Пройденные темы"></progress></div><span class="lighthouse" aria-label="Маяк">♜<span>✦</span></span></div>
+      <div id="route-lights" class="route-lights" role="img"></div>
       <div class="theme-picker"><label for="theme-search">Выбери остановку <span>50 тем</span></label><input id="theme-search" type="search" placeholder="Найти тему: еда, космос, семья…" autocomplete="off"><div id="theme-list" class="theme-list" role="group" aria-label="Темы"></div><p id="theme-empty" hidden>Такой темы пока нет. Попробуй другое слово.</p></div>
       <nav class="theme-pagination" aria-label="Theme pages"><button id="themes-prev" aria-label="Previous page">←</button><span id="theme-page" aria-live="polite"></span><button id="themes-next" aria-label="Next page">→</button></nav>
       <p id="selected-theme" hidden></p>
@@ -42,6 +45,7 @@
       <div class="legend"><span><i class="fr-dot"></i> Français</span><span id="streak">✧ Лови свой ритм</span><span><i class="en-dot"></i> English</span></div>
       <div id="celebration" role="status" hidden></div>
       <div id="board" class="board"></div>
+      <div class="round-trail"><span id="trail-caption"></span><div class="trail-scene"><div id="round-lights" role="img"></div><span class="trail-lighthouse" aria-hidden="true"><svg viewBox="0 0 44 54"><path d="M12 48 17 20h10l5 28z" fill="#fff0d7"/><path d="m16 29 12 4 1 7-14-5" fill="#c789b6"/><path d="M15 20v-9h14v9z" fill="#ffe28b"/><path d="m12 11 10-8 10 8zm-2 37h24v4H10z" fill="#8c76af"/></svg></span></div></div>
       <div class="game-bottom"><span id="feedback" role="status" aria-live="polite">Выбери французское слово — и послушай его.</span><span class="hint">✧ Клик. Слушай. Соединяй.</span></div>
     </section>
     <div class="below"><span>🎧 Лучше со звуком</span><span id="lifetime">Твой маленький шаг к большому bonjour.</span><span>У каждого слова есть пара.</span></div>
