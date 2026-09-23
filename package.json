@@ -1,0 +1,1 @@
+{"name":"ciel","version":"0.1.0","private":true,"type":"module","scripts":{"test":"node --test game.test.js","start":"python3 -m http.server 5173 --bind 127.0.0.1"}}

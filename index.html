@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#edf3fb">
+  <title>Ciel — French in the air</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="flight.css">
+  <link rel="stylesheet" href="delights.css">
+  <link rel="stylesheet" href="journey.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body>
+  <div class="sky" aria-hidden="true"><i></i><i></i><i></i></div>
+  <header class="header">
+    <a class="brand" href="./" aria-label="Ciel — главная">ciel<span>✦</span></a>
+    <span class="tagline">a little French, every day</span>
+    <div class="settings">
+      <select id="locale" aria-label="Язык интерфейса"><option value="ru">RU</option><option value="en">EN</option></select>
+      <button id="motion" class="icon-button" aria-label="Анимация" aria-pressed="true" title="Анимация">≈</button>
+      <button id="sound" class="icon-button" aria-label="Звук" aria-pressed="true" title="Звук">♫</button>
+    </div>
+  </header>
+  <main>
+    <section class="intro">
+      <div class="eyebrow"><span></span> FRENCH IN THE AIR</div>
+      <h1>Поймай слово.<br><em>Найди его пару.</em></h1>
+      <p>Помоги опоссуму BOZUU донести звёздочку до маяка.<br>50 остановок. Новые слова зажигают путь.</p>
+      <div class="journey"><img src="bozuu.svg" alt="Опоссум BOZUU со звёздочкой"><div><strong id="journey-title">Путешествие начинается</strong><p id="journey-progress">0 из 50 огоньков зажжено</p><progress id="journey-meter" value="0" max="50" aria-label="Пройденные темы"></progress></div><span class="lighthouse" aria-label="Маяк">♜<span>✦</span></span></div>
+      <div class="theme-picker"><label for="theme-search">Выбери остановку <span>50 тем</span></label><input id="theme-search" type="search" placeholder="Найти тему: еда, космос, семья…" autocomplete="off"><div id="theme-list" class="theme-list" role="group" aria-label="Темы"></div><p id="theme-empty" hidden>Такой темы пока нет. Попробуй другое слово.</p></div>
+      <nav class="theme-pagination" aria-label="Theme pages"><button id="themes-prev" aria-label="Previous page">←</button><span id="theme-page" aria-live="polite"></span><button id="themes-next" aria-label="Next page">→</button></nav>
+      <p id="selected-theme" hidden></p>
+    </section>
+    <section class="game" aria-label="Найди пары слов">
+      <div class="game-toolbar">
+        <button id="home" class="text-button">← Темы</button>
+        <div class="progress-wrap"><span id="progress-label">0 / 10 пар</span><div class="progress"><div id="progress-bar"></div></div></div>
+        <button id="restart" class="text-button">Начать заново ↻</button>
+      </div>
+      <div class="legend"><span><i class="fr-dot"></i> Français</span><span id="streak">✧ Лови свой ритм</span><span><i class="en-dot"></i> English</span></div>
+      <div id="celebration" role="status" hidden></div>
+      <div id="board" class="board"></div>
+      <div class="game-bottom"><span id="feedback" role="status" aria-live="polite">Выбери французское слово — и послушай его.</span><span class="hint">✧ Клик. Слушай. Соединяй.</span></div>
+    </section>
+    <div class="below"><span>🎧 Лучше со звуком</span><span id="lifetime">Твой маленький шаг к большому bonjour.</span><span>У каждого слова есть пара.</span></div>
+    <p id="audio-note" class="audio-note" role="status"></p>
+  </main>
+  <footer><span>CIEL — A SOFTER WAY TO LEARN</span><span>Сделай вдох. Ты уже учишься.</span></footer>
+  <dialog id="results">
+    <img class="result-mascot" src="bozuu.svg" alt="BOZUU радуется"><div class="eyebrow">BIEN JOUÉ !</div>
+    <h2>На 10 пар ближе.</h2><p id="result-description"></p>
+    <div id="round-reward"></div><p id="round-stats"></p>
+    <div id="review"></div>
+    <p id="journey-result"></p><button id="next" class="primary">К следующей остановке →</button>
+    <button id="result-home" class="text-button">Выбрать другую тему</button>
+  </dialog>
+  <aside id="bozuu-cheer" aria-hidden="true" hidden><span id="bozuu-message">Уиии!</span><img src="bozuu.svg" alt=""></aside>
+</body>
+</html>
