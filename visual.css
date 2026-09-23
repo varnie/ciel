@@ -1,0 +1,44 @@
+/* Rich sky palette and a readable type scale shared by home and gameplay. */
+:root{font-size:16px}
+body{--ink:#f8f7ff;--muted:#e0eaff;background:radial-gradient(ellipse at 15% 15%,#18b5d65c,transparent 45%),radial-gradient(ellipse at 85% 80%,#a04ee74d,transparent 48%),linear-gradient(155deg,#087dae,#2657b1 52%,#55419c);color:var(--ink)}
+body[data-sky=dawn],body[data-sky=dusk]{--ink:#202b51;--muted:#344569}
+body:before{background:radial-gradient(ellipse at 80% 35%,#53208066,transparent 55%),linear-gradient(155deg,#080f2c,#182c60 55%,#362363)}
+.header{padding-top:8px;padding-bottom:8px}.brand{font-size:48px;color:var(--ink)}.brand span{color:#ffce86}.tagline{font-size:15px;color:var(--muted)}
+.icon-button,#locale{height:46px;min-height:46px;background:#f7f6ff;color:#384879;border-color:#ffffffc9;box-shadow:0 5px 16px #12245824}#locale{font-size:15px}
+.eyebrow{font-size:13px;color:var(--muted);letter-spacing:2.5px}.eyebrow>span{background:#ffe29d}
+.intro h1{font-size:clamp(38px,4.2vw,58px);letter-spacing:-1.7px;line-height:1.12;color:var(--ink);font-weight:800;margin:16px 0 18px;text-shadow:0 3px 24px #0d24441c}
+.intro h1 em{color:#ffdfb0}body[data-sky=dawn] .intro h1 em,body[data-sky=dusk] .intro h1 em{color:#6339a5}
+.intro>p{font-size:18px;line-height:1.65;color:var(--muted)}
+.journey{max-width:670px;padding:16px 24px;border:1px solid #afc5ff66;border-radius:28px;background:linear-gradient(120deg,#152851dd,#423074df);box-shadow:0 14px 36px #12225624,inset 0 1px #ffffff1a;color:#fff6ed;gap:18px}
+.journey strong{font-size:20px;line-height:1.3}.journey p,body[data-sky=night] .journey p{font-size:16px;color:#e7dbff;line-height:1.5}.journey>img{width:94px;height:99px}.lighthouse{color:#c4b4ff}.lighthouse span{color:#ffda8b}
+#journey-meter{height:10px;border:0;border-radius:20px;overflow:hidden;background:#ffffff26;accent-color:#ffcc7d}#journey-meter::-webkit-progress-bar{background:#ffffff26;border-radius:20px}#journey-meter::-webkit-progress-value{background:linear-gradient(90deg,#ffb083,#ffdf8d);border-radius:20px}#journey-meter::-moz-progress-bar{background:#ffcf87}
+.theme-picker{margin-top:24px}.theme-picker label{font-size:20px;color:var(--ink);align-items:center}.theme-picker label span{font-size:15px;opacity:1;color:var(--muted);padding:6px 12px;background:#15346a26;border-radius:20px}
+#theme-search{font-size:17px;padding:16px 20px;border-radius:18px;border:1px solid #ffffffa8;color:#263861;background:#fbfaff;box-shadow:0 8px 25px #1726561a}#theme-search::placeholder{color:#5f6e8c;opacity:1}
+.theme-list{gap:18px;padding-top:18px}.theme-card{padding:16px 18px 18px;min-height:205px;gap:7px;border:1px solid #ffffff70;background:radial-gradient(ellipse at 20% 0%,#ffffff24,transparent 70%),linear-gradient(145deg,hsl(var(--card-hue) 64% 44%),hsl(var(--card-hue) 62% 22%));box-shadow:0 12px 25px #09204d30,inset 0 1px #ffffff30;color:#fff}
+.theme-card .theme-art{height:112px;background:radial-gradient(ellipse at 50% 65%,#fff9f5,#fff7f0e8);border-radius:20px;margin-bottom:5px;box-shadow:inset 0 -5px 12px #806aa212}
+.theme-art svg{filter:saturate(1.2);max-width:155px}.theme-card strong{font-size:20px;line-height:1.25;font-weight:800;letter-spacing:-.35px}.theme-card small{font-size:15px;color:#fff;opacity:.88;line-height:1.3}
+.theme-card:hover{background:radial-gradient(ellipse at 20% 0%,#ffffff35,transparent 70%),linear-gradient(145deg,hsl(var(--card-hue) 65% 47%),hsl(var(--card-hue) 62% 25%));box-shadow:0 18px 35px #09204d45,inset 0 1px #ffffff55;border-color:#fff}
+.theme-pagination{font-size:17px;color:var(--ink);margin:22px auto 12px}.theme-pagination button{width:48px;height:46px;background:#fff4ff;color:#563a91}.theme-pagination button:disabled{opacity:.5}
+.below{display:flex;justify-content:space-between;align-items:center;gap:18px;max-width:1080px;margin:22px auto 0;padding:16px 22px;background:#15275055;border:1px solid #a6bcfa44;border-radius:20px;color:#f3eeff;font-size:16px;line-height:1.6}.below>span:nth-child(2){text-align:right}
+footer{font-size:14px;line-height:1.7;color:var(--muted);letter-spacing:.5px;margin-top:18px;padding-bottom:24px}.audio-note{font-size:16px;line-height:1.5}
+.game-toolbar{height:54px}.text-button{font-size:16px;min-height:44px;background:#f2efffdc;color:#314571;padding:10px 17px}.progress-wrap{font-size:17px;color:var(--ink)}.progress{height:9px;background:#e4dfff66}#progress-bar{background:linear-gradient(90deg,#f692c2,#ffdc91)}
+.legend{font-size:16px;color:var(--ink);gap:18px}#streak{font-size:15px;background:#f7f2ff;color:#4d4580;padding:8px 15px}.legend i{width:9px;height:9px}.fr-dot{background:#f5a2e3}.en-dot{background:#83ede0}
+.bubble,.bubble.en{background:radial-gradient(ellipse at 26% 17%,#fff 0%,hsl(var(--hue) 94% 83%) 22%,hsl(var(--hue) 84% 67%) 58%,hsl(var(--hue) 72% 46%) 100%);box-shadow:inset -12px -16px 25px #35227733,inset 4px 4px 15px #ffffffb0,0 20px 35px #0a22583d;color:#1b2850}
+.word{font-size:clamp(22px,2.1vw,32px);line-height:1.2}.language{font-size:13px;opacity:.85}.game-bottom{font-size:17px;line-height:1.4;color:var(--ink);min-height:52px;padding:10px 18px}
+dialog{background:linear-gradient(145deg,#fff9f3,#eee5ff);color:#302a54;border:1px solid #fff;border-radius:30px;box-shadow:0 25px 100px #080d4459}dialog h2{font-size:32px}dialog p,#round-stats{font-size:16px;color:#55516f;line-height:1.6}dialog .eyebrow{color:#79588a}.review-word{font-size:16px;padding:11px 14px;background:#fff;border-color:#b7a2db;color:#493973}.primary{font-size:17px;background:linear-gradient(120deg,#7441d7,#be3e9e);min-height:50px}.result-mascot{width:130px;height:140px}#round-reward{font-size:18px}
+@media(max-width:1100px){.below{margin-left:24px;margin-right:24px}}
+@media(max-width:760px){
+ .header{height:78px;padding:10px 18px}.brand{font-size:40px}.settings{gap:7px}#locale{padding:0 8px}.icon-button{width:43px}.intro{padding-left:18px;padding-right:18px}
+ .intro h1{font-size:36px;letter-spacing:-1px;margin:14px 0}.intro>p{font-size:16px;line-height:1.6}.eyebrow{font-size:12px;letter-spacing:2px}
+ .journey{padding:14px;gap:12px;border-radius:22px}.journey>img{width:66px;height:75px}.journey>div{min-width:0}.journey strong{font-size:17px}.journey p,body[data-sky=night] .journey p{font-size:14px}.lighthouse{display:none}
+ .theme-picker label{font-size:18px;gap:8px}.theme-picker label span{font-size:14px;padding:5px 8px}.theme-picker{margin-top:18px}#theme-search{font-size:16px;padding:14px}
+ .theme-list{gap:12px;padding-top:14px}.theme-card{min-height:174px;padding:12px;gap:5px;border-radius:22px}.theme-card .theme-art{height:86px;border-radius:14px}.theme-card strong{font-size:17px;line-height:1.25}.theme-card small{font-size:14px}
+ .below{flex-direction:column;gap:7px;margin:16px 18px 0;padding:16px;font-size:16px;text-align:center}.below>span:nth-child(2){text-align:center}footer{font-size:14px;padding:16px 20px;margin-top:6px}
+ body.playing .header{height:62px}.game-toolbar{padding:0 10px;height:50px}.text-button{font-size:14px;padding:8px 12px}.progress-wrap{font-size:14px;gap:6px}.progress{width:48px}
+ .legend{font-size:13px;gap:9px}#streak{font-size:12px;min-width:105px;padding:7px 9px}.legend i{width:6px;height:6px}.word,.bubble[data-shape=oval] .word{font-size:clamp(19px,4.8vw,25px)}.language{font-size:11px;letter-spacing:1.5px}
+ .game-bottom{font-size:14px;min-height:48px;padding:8px 14px}.audio-note{font-size:14px}dialog{padding:22px}dialog h2{font-size:28px}.primary{font-size:16px}#celebration{font-size:14px;max-width:95vw;white-space:normal;text-align:center;top:99px}
+}
+@media(max-width:360px){.intro h1{font-size:32px}.theme-card strong{font-size:16px}.theme-card{padding:10px}.theme-list{gap:10px}.theme-picker label span{padding:4px 6px}.game-toolbar .text-button{padding:8px 9px;font-size:13px}.progress-wrap{font-size:13px}.progress{width:34px}.legend{gap:6px}#streak{min-width:100px;padding:7px}.game-bottom{font-size:14px}.header{padding-left:14px;padding-right:14px}}
+
+/* Keep moving scenery from washing out the larger foreground text. */
+.sky i{opacity:.23}.sky i:nth-child(2){opacity:.17}.sky i:nth-child(3){opacity:.2}@media(max-width:760px){body:not(.playing) .celestial{top:22px;right:43%;width:42px;height:42px;opacity:.7}}
